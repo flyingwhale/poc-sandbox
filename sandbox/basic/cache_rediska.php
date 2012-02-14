@@ -20,7 +20,6 @@ use Poc\Poc;
 
 use Poc\Cache\CacheImplementation\RediskaCache;
 
-include ('../framework/autoload.php');
 $poc  = new Poc(array(Poc::PARAM_CACHE => new RediskaCache() ,Poc::PARAM_DEBUG => true));
 $poc->start();
 include('lib/text_generator.php');
