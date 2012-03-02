@@ -14,11 +14,35 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-require ("../../vendor/include_poc.php");
+require ("../../autoload.php");
 
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
 
-$poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(), Poc::PARAM_DEBUG => true, Poc::PARAM_TTL => 5));
+use Poc\Plugins\TestPlugin\TestPlugin;
+
+use Poc\Cache\CacheInvalidationProtection\CIAProtector;
+use Poc\Cache\filtering\OutputFilter;
+use Poc\PocParams;
+use Poc\Pocparameters;
+use Poc\Cache\Cache\CacheImplementationtation\AbstractPocCacheSpecific;
+use Poc\Cache\Header\HeaderManipulator;
+use Poc\Cache\Filtering\Evaluateable;
+use Poc\Handlers\TestOutput;
+use Poc\Cache\PocCache;
+use Poc\Cache\CacheImplementation\CacheParams;
+use Poc\Cache\CacheImplementation\MemcachedCache;
+use Poc\Cache\CacheImplementation\RediskaCache;
+use Poc\Cache\CacheImplementation\MongoDBCache;
+use Poc\Cache\Filtering\Hasher;
+use Poc\Cache\Filtering\Filter;
+use Poc\Cache\Tagging\MysqlTagging;
+use Poc\Plugins\PocLogsParams;
+use Poc\Plugins\PocLogs;
+use Poc\Plugins\MinifyHtmlOutput;
+
+$poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(array(CacheParams::PARAM_FILTER => $blackList)), Poc::PARAM_DEBUG => true));
+$pl = new PocLogs(array(PocLogsParams::PARAM_EVENT_DISPTCHER => $poc->getPocDispatcher()));
 $poc->start();
 include('lib/text_generator.php');
+

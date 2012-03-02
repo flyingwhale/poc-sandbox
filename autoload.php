@@ -16,6 +16,10 @@ limitations under the License.
 
 require_once 'vendor/.composer/autoload.php';
 
+use Poc\Plugins\PocLogsParams;
+use Poc\Plugins\PocLogs;
+use Poc\Plugins\MinifyHtmlOutput;
+
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader ();

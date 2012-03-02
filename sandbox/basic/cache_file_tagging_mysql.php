@@ -14,13 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-require ("../../vendor/include_poc.php");
+require ("../../autoload.php");
 
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
 use Poc\Cache\CacheImplementation\CacheParams;
 use Poc\Cache\Tagging\MysqlTagging;
-  
+use Poc\Plugins\PocLogsParams;
+use Poc\Plugins\PocLogs;
+use Poc\Plugins\MinifyHtmlOutput;
   
 
 $cache = new FileCache(array(FileCache::PARAM_TAGDB => new MysqlTagging()));
@@ -34,6 +36,7 @@ if(isset($_GET)){
 }
 $cache->addCacheAddTags(true,"user,customer");
 $poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(), Poc::PARAM_DEBUG => true));
+$pl = new PocLogs(array(PocLogsParams::PARAM_EVENT_DISPTCHER => $poc->getPocDispatcher()));
 $poc->start();
 include('lib/text_generator.php');
 

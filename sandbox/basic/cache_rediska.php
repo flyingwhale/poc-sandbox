@@ -14,13 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-require ("../../vendor/include_poc.php");
+require ("../../autoload.php");
 
 use Poc\Poc;
 
 use Poc\Cache\CacheImplementation\RediskaCache;
 
+use Poc\Plugins\PocLogsParams;
+use Poc\Plugins\PocLogs;
+use Poc\Plugins\MinifyHtmlOutput;
+
 $poc  = new Poc(array(Poc::PARAM_CACHE => new RediskaCache() ,Poc::PARAM_DEBUG => true));
+$pl = new PocLogs(array(PocLogsParams::PARAM_EVENT_DISPTCHER => $poc->getPocDispatcher()));
 $poc->start();
 include('lib/text_generator.php');
 
