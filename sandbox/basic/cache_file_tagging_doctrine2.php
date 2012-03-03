@@ -20,9 +20,9 @@ use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
 use Poc\Cache\CacheImplementation\CacheParams;
 use Poc\Cache\Tagging\Doctrine2Tagging;
-use Poc\Plugins\PocLogsParams;
-use Poc\Plugins\PocLogs;
-use Poc\Plugins\MinifyHtmlOutput;
+use Poc\PocPlugins\PocLogsParams;
+use Poc\PocPlugins\PocLogs;
+use Poc\PocPlugins\MinifyHtmlOutput;
 
 $cache = new FileCache(array(FileCache::PARAM_TAGDB => new Doctrine2Tagging()));
 

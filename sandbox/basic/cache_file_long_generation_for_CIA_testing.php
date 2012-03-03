@@ -17,9 +17,9 @@ require ("../../autoload.php");
 
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
-use Poc\Plugins\PocLogsParams;
-use Poc\Plugins\PocLogs;
-use Poc\Plugins\MinifyHtmlOutput;
+use Poc\PocPlugins\PocLogsParams;
+use Poc\PocPlugins\PocLogs;
+use Poc\PocPlugins\MinifyHtmlOutput;
 
 $poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(), Poc::PARAM_DEBUG => true));
 $pl = new PocLogs(array(PocLogsParams::PARAM_EVENT_DISPTCHER => $poc->getPocDispatcher()));
