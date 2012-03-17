@@ -42,7 +42,7 @@ use Poc\PocPlugins\PocLogs;
 use Poc\PocPlugins\MinifyHtmlOutput;
 
 $poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(), Poc::PARAM_DEBUG => true));
-new PocLogs(array(PocLogsParams::PARAM_EVENT_DISPTCHER => $poc->getPocDispatcher()));
+$pl = new PocLogs(array(PocLogsParams::PARAM_POC => $poc));
 new MinifyHtmlOutput($poc->getPocDispatcher());
 $poc->start();
 include('lib/text_generator.php');

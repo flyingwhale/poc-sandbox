@@ -24,7 +24,7 @@ use Poc\PocPlugins\PocLogs;
 use Poc\PocPlugins\MinifyHtmlOutput;
 
 $poc  = new Poc(array(Poc::PARAM_CACHE => new MemcachedCache(), Poc::PARAM_DEBUG => true));
-$pl = new PocLogs(array(PocLogsParams::PARAM_EVENT_DISPTCHER => $poc->getPocDispatcher()));
+$pl = new PocLogs(array(PocLogsParams::PARAM_POC => $poc));
 $poc->start();
 include('lib/text_generator.php');
 

@@ -16,12 +16,16 @@ limitations under the License.
 require ("../../autoload.php");
 
 use Poc\Poc;
+use Poc\Cache\CacheImplementation\MemcachedCache;
 use Poc\Cache\CacheImplementation\FileCache;
 use Poc\PocPlugins\PocLogsParams;
 use Poc\PocPlugins\PocLogs;
 use Poc\PocPlugins\MinifyHtmlOutput;
+use Poc\Cache\CacheInvalidationProtection\CIAProtectorLogger;
+use Poc\Cache\CacheInvalidationProtection\CIAProtector;
 
-$poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(), Poc::PARAM_DEBUG => true));
-$pl = new PocLogs(array(PocLogsParams::PARAM_EVENT_DISPTCHER => $poc->getPocDispatcher()));
+$poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(array(FileCache::PARAM_TTL=>20)), Poc::PARAM_DEBUG => true, Poc::PARAM_CIA_PROTECTOR => new CIAProtector()));
+new PocLogs(array(PocLogsParams::PARAM_POC => $poc));
+new CIAProtectorLogger(array(PocLogsParams::PARAM_POC => $poc));
 $poc->start();
 include('lib/text_generator_ten_seconds.php');
