@@ -17,15 +17,10 @@ limitations under the License.
 require ("../../autoload.php");
 
 use Poc\Poc;
-
 use Poc\Cache\CacheImplementation\RediskaCache;
 
-use Poc\PocPlugins\PocLogsParams;
-use Poc\PocPlugins\PocLogs;
-use Poc\PocPlugins\Output\MinifyHtmlOutput;
-
-$poc  = new Poc(array(Poc::PARAM_CACHE => new RediskaCache() ,Poc::PARAM_DEBUG => true));
-$pl = new PocLogs(array(PocLogsParams::PARAM_POC => $poc));
+$poc  = new Poc(array(Poc::PARAM_CACHE => new \Poc\Cache\CacheImplementation\PredisCache() ,Poc::PARAM_DEBUG => true));
+$poc->addPlugin(new \Poc\PocPlugins\Logging\PocLogs());
 $poc->start();
 include('lib/text_generator.php');
 
