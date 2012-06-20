@@ -19,37 +19,16 @@ require ("../../autoload.php");
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
 
-use Poc\Plugins\TestPlugin\TestPlugin;
-
-use Poc\Cache\CacheInvalidationProtection\CIAProtector;
-use Poc\Cache\Filtering\OutputFilter;
-use Poc\PocParams;
-use Poc\Pocparameters;
-use Poc\Cache\Cache\CacheImplementationtation\AbstractPocCacheSpecific;
-use Poc\Cache\Header\HeaderManipulator;
-use Poc\Cache\Filtering\Evaluateable;
-use Poc\Handlers\TestOutput;
-use Poc\Cache\PocCache;
-use Poc\Cache\CacheImplementation\CacheParams;
-use Poc\Cache\CacheImplementation\MemcachedCache;
-use Poc\Cache\CacheImplementation\RediskaCache;
-use Poc\Cache\CacheImplementation\MongoDBCache;
-use Poc\Cache\Filtering\Hasher;
-use Poc\Cache\Filtering\Filter;
-use Poc\Cache\Tagging\MysqlTagging;
-use Poc\PocPlugins\PocLogsParams;
-use Poc\PocPlugins\PocLogs;
-use Poc\PocPlugins\MinifyHtmlOutput;
-
-$outputFilter = new OutputFilter();
+$outputFilter = new \Poc\PocPlugins\Output\OutputFilter();
 $outputFilter->addBlacklistCondition('/lorem/');
 
 $poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(),
                       Poc::PARAM_DEBUG => true,
-                      Poc::PARAM_OUTPUTFILTER => $outputFilter));
+                      ));
 
-$pl = new PocLogs(array(PocLogsParams::PARAM_POC => $poc));
-new MinifyHtmlOutput($poc->getPocDispatcher());
+$poc->addPlugin( new \Poc\PocPlugins\Logging\PocLogs() );
+$poc->addPlugin( new \Poc\PocPlugins\Output\MinifyHtmlOutput() );
+$poc->addPlugin($outputFilter);
 $poc->start();
 include('lib/text_generator.php');
 

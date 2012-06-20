@@ -21,7 +21,7 @@ use Poc\Poc;
 use Poc\Cache\CacheImplementation\MemcachedCache;
 use Poc\PocPlugins\PocLogsParams;
 use Poc\PocPlugins\PocLogs;
-use Poc\PocPlugins\MinifyHtmlOutput;
+use Poc\PocPlugins\Output\MinifyHtmlOutput;
 
 $poc  = new Poc(array(Poc::PARAM_CACHE => new MemcachedCache(), Poc::PARAM_DEBUG => true));
 $pl = new PocLogs(array(PocLogsParams::PARAM_POC => $poc));

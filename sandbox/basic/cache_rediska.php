@@ -22,7 +22,7 @@ use Poc\Cache\CacheImplementation\RediskaCache;
 
 use Poc\PocPlugins\PocLogsParams;
 use Poc\PocPlugins\PocLogs;
-use Poc\PocPlugins\MinifyHtmlOutput;
+use Poc\PocPlugins\Output\MinifyHtmlOutput;
 
 $poc  = new Poc(array(Poc::PARAM_CACHE => new RediskaCache() ,Poc::PARAM_DEBUG => true));
 $pl = new PocLogs(array(PocLogsParams::PARAM_POC => $poc));

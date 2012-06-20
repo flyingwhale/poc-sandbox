@@ -14,17 +14,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-require_once 'vendor/.composer/autoload.php';
+require_once 'vendor/autoload.php';
 
-use Poc\Plugins\PocLogsParams;
-use Poc\Plugins\PocLogs;
-use Poc\Plugins\MinifyHtmlOutput;
-
-use Symfony\Component\ClassLoader\UniversalClassLoader;
-
-$loader = new UniversalClassLoader ();
-
-$prefixes = array('Rediska' => __DIR__.'/vendor/rediska/library');
-$loader->registerPrefixes($prefixes);
-
-$loader->register ();
