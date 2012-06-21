@@ -1,15 +1,28 @@
 {
     "name": "poc/poc-sandbox",
     "type": "library",
-    "version": "0.5.1",
+    "keywords": ["reverse proxy", "caching", "poc", "sandbox"],
     "authors": [
         {
           "name":   "Imre Toth",
           "email":  "tothimre@gmail.com"
         }
     ],
+    "contributors": [
+        {
+          "name":   "Zsolt Javorszky",
+          "email":  "zsolt.javorszky@gmail.com"
+        },
+        {
+          "name":   "Sandor Legoza",
+          "email":  "sandor.legoza@gmail.com"
+        }
+    ],
    "require": {
         "php":                  ">=5.3.0",
         "poc/poc":              "master-dev"
+    },
+   "require-dev": {
+        "fabpot/php-cs-fixer":      "dev-master"
     }
 }
