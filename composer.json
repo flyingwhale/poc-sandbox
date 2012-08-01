@@ -20,9 +20,10 @@
     ],
    "require": {
         "php":                  ">=5.3.0",
-        "poc/poc":              "master-dev"
+        "poc/poc":              "dev-master"
     },
    "require-dev": {
         "fabpot/php-cs-fixer":      "dev-master"
-    }
+    },
+    "minimum-stability": "dev"     
 }
