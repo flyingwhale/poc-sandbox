@@ -9,11 +9,13 @@ $poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(array(\Poc\Cache\CacheIm
                Poc::PARAM_DEBUG => false
         ));
 
+
 $db = new Dasboard;
 
 foreach ($plugins as $plugin){
 
     if($db->getValue($plugin)){
+        $poc->getHasher()->addDistinguishVariable($plugin);
         switch ($plugin)
         {
             case 'ETAG':
