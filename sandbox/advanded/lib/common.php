@@ -1,7 +1,9 @@
 <?php
 
-  $plugins[] = 'ETAG';
-  $plugins[] = 'Compress';
+  $plugins['ETAG'] = 1;
+  $plugins['Compress'] = 1 ;
+  $plugins['CIA'] = 1;
+  $plugins['Debug'] = 1;
 
   class Dasboard{
 
@@ -36,7 +38,6 @@
          }
 
          echo'<INPUT TYPE="checkbox" NAME="'.$name.'" VALUE="1" '.$cecked.' > <br>';
-
       }
 
       function getValue($name){
