@@ -5,8 +5,49 @@ require_once (__DIR__."/lib/common.php");
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
 
-$db = new Dasboard;
+use Silex\Provider\FormServiceProvider;
 
+$app = new Silex\Application;
+
+$app->register(new FormServiceProvider());
+
+
+$app->match('/form', function (Request $request) use ($app) {
+    // some default data for when the form is displayed the first time
+    $data = array(
+        'name' => 'Your name',
+        'email' => 'Your email',
+    );
+
+    $form = $app['form.factory']->createBuilder('form', $data)
+        ->add('name')
+        ->add('email')
+        ->add('gender', 'choice', array(
+            'choices' => array(1 => 'male', 2 => 'female'),
+            'expanded' => true,
+        ))
+        ->getForm();
+
+    if ('POST' == $request->getMethod()) {
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            // do something with the data
+
+            // redirect somewhere
+            return $app->redirect('...');
+        }
+    }
+
+    // display the form
+    return $app['twig']->render('index.twig', array('form' => $form->createView()));
+});
+
+
+
+$db = new Dasboard;
 $poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(array(\Poc\Cache\CacheImplementation\Cache::PARAM_TTL=>10)),
                Poc::PARAM_DEBUG => $db->getValue('Debug')
         ));

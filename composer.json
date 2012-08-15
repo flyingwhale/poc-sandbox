@@ -20,7 +20,9 @@
     ],
    "require": {
         "php":                  ">=5.3.0",
-        "poc/poc":              "dev-master"
+        "poc/poc":              "dev-master",
+        "silex/silex":          "1.0.*",
+        "symfony/form":         "2.1.*"
     },
    "require-dev": {
         "fabpot/php-cs-fixer":      "dev-master"
