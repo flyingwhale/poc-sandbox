@@ -18,15 +18,13 @@ require ("../../autoload.php");
 
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
-use Poc\Cache\CacheImplementation\CacheParams;
 use Poc\PocPlugins\PocLogsParams;
 use Poc\PocPlugins\PocLogs;
-use Poc\PocPlugins\Output\MinifyHtmlOutput;;
-
+use Poc\Toolsets\NativeOutputHandlers\HttpCapture;
 
 $options['orm.entity_managers.default.connection'] = 'sqlite';
 $tagging = new \Poc\PocPlugins\Tagging\Doctrine2Tagging($options);
-$poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(array(FileCache::PARAM_TTL => 300)), Poc::PARAM_DEBUG => true));
+$poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(array(FileCache::PARAM_TTL => 300)), Poc::PARAM_TOOLSET => new HttpCapture()));
 $poc->addPlugin($tagging);
 if(isset($_GET)){
   if(isset($_GET['delcache'])){

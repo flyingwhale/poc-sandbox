@@ -19,8 +19,9 @@ require ("../../autoload.php");
 
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\MemcachedCache;
+use Poc\Toolsets\NativeOutputHandlers\HttpCapture;
 
-$poc  = new Poc(array(Poc::PARAM_CACHE => new MemcachedCache(), Poc::PARAM_DEBUG => true));
+$poc  = new Poc(array(Poc::PARAM_CACHE => new MemcachedCache(), Poc::PARAM_TOOLSET => new HttpCapture()));
 $poc->addPlugin(new \Poc\PocPlugins\Logging\PocLogs());
 $poc->start();
 include('lib/text_generator.php');
