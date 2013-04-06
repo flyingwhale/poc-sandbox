@@ -14,12 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+
+
+//TODO: THIS TEST IS NOT WORKING PROPERLY!!!
 require ("../../autoload.php");
 
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
 use Poc\PocPlugins\PocLogsParams;
-use Poc\PocPlugins\PocLogs;
+use Poc\PocPlugins\Logging\PocLogs;
 use Poc\Toolsets\NativeOutputHandlers\HttpCapture;
 
 $options['orm.entity_managers.default.connection'] = 'sqlite';
@@ -34,8 +37,7 @@ if(isset($_GET)){
   }
 }
 $tagging->addCacheAddTags(true,"user,customer");
-
-$pl = new \Poc\PocPlugins\Logging\PocLogs();
+$pl = new PocLogs();
 $poc->addPlugin($pl);
 
 $poc->start();

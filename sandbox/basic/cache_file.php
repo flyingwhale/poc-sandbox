@@ -18,6 +18,7 @@ require ("../../autoload.php");
 
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
+use Poc\Toolsets\NativeOutputHandlers\HttpCapture;
 
 
 $poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(), Poc::PARAM_TOOLSET => new HttpCapture()));

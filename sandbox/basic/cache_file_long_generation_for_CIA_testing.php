@@ -18,11 +18,9 @@ require ("../../autoload.php");
 use Poc\Poc;
 use Poc\Cache\CacheImplementation\FileCache;
 
-use Poc\Cache\CacheInvalidationProtection\CIAProtectorLogger;
-use Poc\Cache\CacheInvalidationProtection\CIAProtector;
 
-$poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(array(FileCache::PARAM_TTL=>20)), Poc::PARAM_DEBUG => true));
-$poc->addPlugin(new \Poc\PocPlugins\CacheInvalidationProtection\CIAProtector);
+$poc  = new Poc(array(Poc::PARAM_CACHE => new FileCache(array(FileCache::PARAM_TTL=>20)), Poc::PARAM_TOOLSET => new \Poc\Toolsets\NativeOutputHandlers\HttpCapture()));
+$poc->addPlugin(new \Poc\PocPlugins\CacheInvalidationProtection\ROIProtector());
 $poc->addPlugin(new \Poc\PocPlugins\Logging\PocLogs());
 //new CIAProtectorLogger(array(PocLogsParams::PARAM_POC => $poc));
 
