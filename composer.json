@@ -1,5 +1,5 @@
 {
-    "name": "poc/poc-sandbox",
+    "name": "flyingwhale/poc-sandbox",
     "type": "library",
     "keywords": ["reverse proxy", "caching", "poc", "sandbox"],
     "authors": [
