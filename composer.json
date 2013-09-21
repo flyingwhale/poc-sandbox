@@ -27,5 +27,6 @@
    "require-dev": {
         "fabpot/php-cs-fixer":      "dev-master"
     },
-    "minimum-stability": "dev"     
+    "minimum-stability": "dev",
+    "process-timeout": "3600"
 }
